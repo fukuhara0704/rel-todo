@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT todo-jar target/0.0.1-SNAPSHOT.jar
