@@ -130,6 +130,7 @@ public class TaskController {
             return "redirect:/error";
         }
     }
+
     /**
      * タスク完了処理
      * 
@@ -137,14 +138,14 @@ public class TaskController {
      * @return
      */
     @RequestMapping(value = "/task/done", method = RequestMethod.POST)
-    public String doneTask(@RequestParam("done-task") String param, @RequestParam("hd-type") String type) {
+    public String doneTask(@RequestParam("hd-finish-task") String param, @RequestParam("hd-type") String type) {
         // SESSIONからUserIDを取得
         String userId = userSession.getUserId();
 
-        String taskName = param;
-        System.out.println(taskName);
+        Integer taskId = Integer.parseInt(param);
+        System.out.println(taskId);
 
-        if (taskService.createTask(userId, taskName)) {
+        if (taskService.doneTask(userId, taskId)) {
             return "redirect:/task?type=" + type;
         } else {
             // todayにリダイレクト

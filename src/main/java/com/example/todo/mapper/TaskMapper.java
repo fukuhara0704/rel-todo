@@ -47,4 +47,7 @@ public interface TaskMapper {
 
     @Select("Select * from public.t_task where user_id = #{userId} ORDER BY id DESC")
     public List<TaskModel> findbyAllTask(@Param("userId") String userId);
+
+    @Update("update public.t_task set  task_status=2 where user_id = #{userId} and task_id = #{taskId}" )
+    public boolean doneTask(@Param("userId") String userId, @Param("taskId") Integer taskId);
 }

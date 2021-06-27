@@ -22,10 +22,10 @@ $(function() {
         console.log('finishクリックされました！');
         $(this).children('input[name="finish-check"]').prop('checked', true);
 
-        var taskId = this.getAttribute("id");
-        console.log(taskId)
-        $('input[name="done-task"]').val(taskId);
-        $('input[name="done-task"]').val(taskId);
+        $("#doneForm").submit();
+        // var taskId = this.getAttribute("id");
+        // console.log(taskId)
+        // $('input[name="done-task"]').val(taskId);
 
     })
 

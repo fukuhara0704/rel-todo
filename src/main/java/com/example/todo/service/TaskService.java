@@ -65,4 +65,11 @@ public class TaskService {
         List<TaskModel> allTaskList = taskMapper.findbyAllTask(userId);
         return allTaskList;
     }
+
+    public boolean doneTask(String userId, Integer taskId) {
+        if (!taskMapper.doneTask(userId, taskId)) {
+            return false;
+        }
+        return true;
+    }
 }
