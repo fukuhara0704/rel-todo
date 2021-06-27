@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "session",proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserSession implements Serializable {
     
-    private final long serialVersionUID = 6334063099671792256L;
+    // private final long serialVersionUID = 6334063099671792256L;
 
     private String userId;
     private String userName;

@@ -15,40 +15,40 @@
 <body>
     <div class="grovalNavigation">
         <p class="app-title">TODOアプリ</p>
-
-        <div class="user-container">
-            <button class="user" th:text="${userName}"></button>
-            <button class="search">検索</button>
-        </div>
-        <a th:href="@{/task(type=1)}">
+        <a th:href="@{/task(type=today)}">
             <button class="item">
                 <span> ◆ </span>
                 <span>今日のタスク</span>
                 <span class="task-count"></span>
             </button>
         </a>
-        <button class="item">
+        <a th:href="@{/task(type=important)}">
+            <button class="item">
             <span> ★ </span>
             <span>重要なタスク</span>
             <span class="task-count"></span>
             </button>
-        <button class="item">
+        </a>
+        <a th:href="@{/task(type=unfinish)}">
+            <button class="item">
             <span> △ </span>
-            <span>今後のタスク</span>
+            <span>未実施のタスク</span>
             <span class="task-count"></span>
         </button>
+        </a>
+        <a th:href="@{/task(type=done)}">
+            <button class="item">
+            <span> ◎ </span>
+            <span>完了済みのタスク</span>
+            <span class="task-count"></span>
+        </button>
+        </a>
         <a th:href="@{/task(type=)}">
             <button class="item">
             <span> ○ </span>
-            <span>タスク一覧</span>
-            <span class="task-count">100</span>
+            <span>全タスク一覧</span>
         </button>
         </a>
-        <hr>
-        <button class="item">
-            <span> + </span>
-            <span>新しいプロジェクト</span>
-        </button>
     </div>
 
     <div class="content">

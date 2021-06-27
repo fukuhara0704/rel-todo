@@ -29,8 +29,9 @@ public class TaskController {
 
     @RequestMapping({ "/", "/index" })
     public String index() {
-        return "redirect:/task";
+        return "redirect:/task?type";
     }
+
     /**
      * タスクを表示
      * 
@@ -38,19 +39,19 @@ public class TaskController {
      * @return
      */
     @RequestMapping(value = "/task", method = RequestMethod.GET)
-    public String getTask(Model model, @RequestParam(name = "type" ,required = false) String type) {
+    public String getTask(Model model, @RequestParam(name = "type", required = false) String type) {
 
         // SESSIONからUserIDを取得
         String userId = userSession.getUserId();
         // SESSIONからUserNameを取得
-        String userName = userSession.getUserName();
+        // String userName = userSession.getUserName();
         // 表示する画面名
         String targetHtml = "";
         // 画面が参照するデータ
         List<TaskModel> taskDataList;
 
         // パラメータの存在確認
-        if (type != "") {
+        if (type .equals("today")) {
             // 今日の日付を取得
             List<String> result = getTodayDate();
             String startToday = result.get(0);
@@ -58,6 +59,23 @@ public class TaskController {
             // 本日のタスク情報を取得する。
             taskDataList = taskService.findbyIdAllTask(userId, startToday, endToday);
             targetHtml = "today";
+
+        } else if (type.equals("unfinish")) {
+            // すべての未実施のタスク情報を取得する。
+            Integer taskStatus = 0;
+            taskDataList = taskService.findbyIdAllUnfinishTask(userId, taskStatus);
+            targetHtml = "unfinish";
+
+        } else if (type.equals("done")) {
+            // すべての完了済みのタスク情報を取得する。
+            Integer taskStatus = 2;
+            taskDataList = taskService.findbyIdAllUnfinishTask(userId, taskStatus);
+            targetHtml = "done";
+        } else if (type.equals("important")) {
+            // すべての完了済みのタスク情報を取得する。
+            Integer taskStatus = 1;
+            taskDataList = taskService.findbyIdAllUnfinishTask(userId, taskStatus);
+            targetHtml = "important";
         } else {
             // すべてのタスク情報を取得する。
             taskDataList = taskService.findAllTask(userId);
