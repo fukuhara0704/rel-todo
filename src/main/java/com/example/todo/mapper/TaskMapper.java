@@ -50,4 +50,7 @@ public interface TaskMapper {
 
     @Update("update public.t_task set  task_status=2 where user_id = #{userId} and task_id = #{taskId}" )
     public boolean doneTask(@Param("userId") String userId, @Param("taskId") Integer taskId);
+
+    @Update("update public.t_task set  task_today_flag = #{todayTaskFlag} where user_id = #{userId} and task_id = #{taskId}" )
+    public boolean updateTodayFlag(@Param("userId") String userId, @Param("taskId") Integer taskId, @Param("todayTaskFlag") Integer todayTaskFlag);
 }

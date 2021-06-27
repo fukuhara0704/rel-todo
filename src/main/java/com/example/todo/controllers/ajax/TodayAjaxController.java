@@ -44,8 +44,7 @@ public class TodayAjaxController {
         System.out.println(gson.toJson(targetTask));
         return gson.toJson(targetTask);
     }
-    
-    
+
     @ResponseBody
     @RequestMapping(value = "/updateAjaxTask", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     public String updateAjaxTaskData(@RequestBody String json) throws IOException, ServletException {
@@ -56,13 +55,13 @@ public class TodayAjaxController {
         String taskName = jobj.get("task_name").getAsString();
         Integer taskId = Integer.parseInt(taskIdStr);
         System.out.println(userSession.getUserId());
-        
-        boolean updateTask = taskAjaxService.updatebyTaskId(userSession.getUserId(),taskId,taskName);
-        
+
+        boolean updateTask = taskAjaxService.updatebyTaskId(userSession.getUserId(), taskId, taskName);
+
         String result = "";
-        if(updateTask){
+        if (updateTask) {
             result = "更新成功";
-        }else{
+        } else {
             result = "更新失敗";
         }
         return gson.toJson(result);
@@ -78,17 +77,51 @@ public class TodayAjaxController {
         String taskMemo = jobj.get("task_memo").getAsString();
         Integer taskId = Integer.parseInt(taskIdStr);
         System.out.println(userSession.getUserId());
-        
-        boolean updateTask = taskAjaxService.updateMemo(userSession.getUserId(),taskId,taskMemo);
-        
+
+        boolean updateTask = taskAjaxService.updateMemo(userSession.getUserId(), taskId, taskMemo);
+
         String result = "";
-        if(updateTask){
+        if (updateTask) {
             result = "更新成功";
-        }else{
+        } else {
             result = "更新失敗";
         }
         return gson.toJson(result);
     }
 
+    /**
+     * 
+     * @param json
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateAjaxTodayFlag", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+    public String updateAjaxTodayFlag(@RequestBody String json) throws IOException, ServletException {
+        System.out.println(json);
+        JsonObject jobj = new Gson().fromJson(json, JsonObject.class);
+
+        String taskIdStr = jobj.get("task_id").getAsString();
+        String todayFlagStr = jobj.get("today_task_flag").getAsString();
+        System.out.println(taskIdStr);
+        Integer taskId = Integer.parseInt(taskIdStr);
+        Integer todayTaskFlag = 0;
+        if (todayFlagStr.equals("0")) {
+            todayTaskFlag = 1;
+        }
+
+        System.out.println(userSession.getUserId());
+
+        boolean updateTask = taskAjaxService.updateTodayFlag(userSession.getUserId(), taskId, todayTaskFlag);
+
+        String result = "";
+        if (updateTask) {
+            result = "更新成功";
+        } else {
+            result = "更新失敗";
+        }
+        return gson.toJson(result);
+    }
 
 }

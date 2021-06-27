@@ -40,4 +40,11 @@ public class TaskAjaxService {
         }
         return true;
     }
+
+    public boolean updateTodayFlag(String userId, Integer taskId, Integer todayTaskFlag) {
+        if (!taskMapper.updateTodayFlag(userId, taskId, todayTaskFlag)) {
+            return false;
+        }
+        return true;
+    }
 }

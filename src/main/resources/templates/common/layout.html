@@ -118,6 +118,8 @@
             <div class="local-add-today">
                 <span> ◆ </span>
                 <label id="todayFlagData"></label>
+                <input type="hidden" id="hiddenTodayFlagTaskId">
+                <input type="hidden" id="hiddenTodayFlag">
             </div>
             <div class="local-limit">
                 <span> ◆ </span>
@@ -140,7 +142,7 @@
                 <form id="delForm" action="/task/delete" method="POST">
                     <div class="trash"> </div>
                     <input type="hidden" id="hiddenDelTaskId" name="hd-del-task-id">
-                    <div layout:fragment="taskTypeDel"></div>
+                    <div layout:fragment="taskType"></div>
                 </form>
             </div>
         </div>

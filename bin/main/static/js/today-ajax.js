@@ -35,7 +35,9 @@ $(document).ready(function() {
             $('textarea[name="side-task"]').val(data[0].task_name);
             $('#hiddenTaskData').val(data[0].task_name);
             $('#hiddenTaskId').val(data[0].task_id);
-            $('#hiddenDelTaskId').val(data[0].task_id);
+            $('#hiddenDelTaskId').val(data[0].task_id)
+            $('#hiddenTodayFlagTaskId').val(data[0].task_id)
+            $('#hiddenTodayFlag').val(data[0].task_today_flag)
 
             if (data[0].task_end_datetime === undefined) {
                 $('#limitData').text("期限日の追加");
@@ -132,9 +134,39 @@ $(document).ready(function() {
     })
 
     /////////////////////////////////////////////
-    //                 完了済み処理                    //
+    //          本日のタスク追加処理               //
     /////////////////////////////////////////////
 
-
+    $('.local-add-today').click(function() {
+        console.log('きょうの予定追加処理がクリックされました！');
+        var taskId = $('#hiddenTodayFlagTaskId').val();
+        var todayTaskFlag = $('#hiddenTodayFlag').val();
+        var jsonString = {
+            task_id: taskId,
+            today_task_flag: todayTaskFlag
+        }
+        var formData = JSON.stringify(jsonString);
+        console.log(formData);
+        $.ajax({
+            type: 'POST',
+            url: '/updateAjaxTodayFlag',
+            data: formData,
+            contentType: 'application/json',
+            datatype: 'json',
+            scriptCharset: 'utf-8'
+        }).done(function(data) {
+            console.log(data);
+            if (todayTaskFlag == 0) {
+                $('#todayFlagData').text("今日の予定に追加されました");
+                $('#hiddenTodayFlag').val(1);
+            } else {
+                $('#todayFlagData').text("今日の予定に追加");
+                $('#hiddenTodayFlag').val(0);
+            }
+        }).fail(function(data) {
+            //返らなかったときの処理
+            console.log("error");
+        });
+    })
 
 });
