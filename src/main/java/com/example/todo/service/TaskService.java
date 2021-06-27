@@ -18,12 +18,12 @@ public class TaskService {
     TaskMapper taskMapper;
 
     /**
-     * 対象のユーザーの全タスクの情報を取得する。
+     * 対象のユーザーの本日タスクの情報を取得する。
      * @return
      */
     public List<TaskModel> findbyIdAllTask(String userId, String startToday, String endToday){
 
-        List<TaskModel> taskModel = taskMapper.findByIdAllTask(userId, startToday, endToday);
+        List<TaskModel> taskModel = taskMapper.findByIdTodayTask(userId);
         return taskModel;
     }
 

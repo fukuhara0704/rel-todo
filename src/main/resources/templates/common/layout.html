@@ -71,8 +71,9 @@
                 <table class="task-tbl">
                     <tr th:each="data : ${taskDataList}" th:object="${data}">
                         <td class="task-td">
-                            <form action="/task/done" method="POST">
-                                <div layout:fragment="taskTypeDone"></div>
+                            <form id="doneForm" action="/task/done" method="POST">
+                                <input type="hidden" id="hd-finish-task" name="hd-finish-task" th:value="*{task_id}">
+                                <div layout:fragment="taskType"></div>
                                 <div class="finish" th:id="*{task_id}">
                                     <input class="finish-check" type="checkbox" name="finish-check">
                                     <span class="dummy-finish-check"></span>
@@ -96,7 +97,7 @@
                         <span class="en-icon"></span>
                     </div>
                     <input type="text" name="add-task-data" class="add-task" id="add-task" placeholder=" + タスクの追加" maxlength="257">
-                    <div layout:fragment="taskTypeCreate"></div>
+                    <div layout:fragment="taskType"></div>
                     <div class="calendar">
                     </div>
                     <div class="repeat">
