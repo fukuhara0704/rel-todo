@@ -47,4 +47,11 @@ public class TaskAjaxService {
         }
         return true;
     }
+
+    public boolean updateImportant(String userId, Integer taskId, Integer taskPriority) {
+        if (!taskMapper.updateImportant(userId, taskId, taskPriority)) {
+            return false;
+        }
+        return true;
+    }
 }

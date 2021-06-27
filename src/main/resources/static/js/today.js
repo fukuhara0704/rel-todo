@@ -12,21 +12,12 @@ $(function() {
 
 
 
-    $('.important-mark').on('click', function(event) {
-        console.log('importantクリックされました！');
-        $(this).toggleClass('isActive');
-        console.log(this)
-    });
 
     $('.finish').click(function() {
         console.log('finishクリックされました！');
         $(this).children('input[name="finish-check"]').prop('checked', true);
 
         $("#doneForm").submit();
-        // var taskId = this.getAttribute("id");
-        // console.log(taskId)
-        // $('input[name="done-task"]').val(taskId);
-
     })
 
 

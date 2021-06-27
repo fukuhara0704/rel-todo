@@ -90,6 +90,7 @@ public class TodayAjaxController {
     }
 
     /**
+     * 今日の日付フラグ更新処理
      * 
      * @param json
      * @return
@@ -114,6 +115,40 @@ public class TodayAjaxController {
         System.out.println(userSession.getUserId());
 
         boolean updateTask = taskAjaxService.updateTodayFlag(userSession.getUserId(), taskId, todayTaskFlag);
+
+        String result = "";
+        if (updateTask) {
+            result = "更新成功";
+        } else {
+            result = "更新失敗";
+        }
+        return gson.toJson(result);
+    }
+
+    /**
+     * 重要なタスク更新処理
+     * 
+     * @param json
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateAjaxImportant", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+    public String updateAjaxImportant(@RequestBody String json) throws IOException, ServletException {
+        System.out.println(json);
+        JsonObject jobj = new Gson().fromJson(json, JsonObject.class);
+
+        String taskIdStr = jobj.get("task_id").getAsString();
+        String taskPriorityStr = jobj.get("task_priority").getAsString();
+        System.out.println(taskIdStr);
+        Integer taskId = Integer.parseInt(taskIdStr);
+        Integer taskPriority = 0;
+        if (taskPriorityStr.equals("0")) {
+            taskPriority = 1;
+        }
+
+        boolean updateTask = taskAjaxService.updateImportant(userSession.getUserId(), taskId, taskPriority);
 
         String result = "";
         if (updateTask) {

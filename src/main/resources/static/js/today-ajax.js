@@ -169,4 +169,41 @@ $(document).ready(function() {
         });
     })
 
+    /////////////////////////////////////////////
+    //          重要なタスク追加処理               //
+    /////////////////////////////////////////////
+
+    $('.important-mark').on('click', function(event) {
+        console.log('importantクリックされました！');
+        $(this).toggleClass('isActive');
+        console.log(this)
+
+        var taskId = $('#hiddenPriorityTaskId').val();
+        var taskPriority = $('#hiddenTaskPriority').val();
+        var jsonString = {
+            task_id: taskId,
+            task_priority: taskPriority
+        }
+        var formData = JSON.stringify(jsonString);
+        console.log(formData);
+        $.ajax({
+            type: 'POST',
+            url: '/updateAjaxImportant',
+            data: formData,
+            contentType: 'application/json',
+            datatype: 'json',
+            scriptCharset: 'utf-8'
+        }).done(function(data) {
+            console.log(data);
+            if (taskPriority == 0) {
+                $('#hiddenTaskPriority').val(1);
+            } else {
+                $('#hiddenTaskPriority').val(0);
+            }
+        }).fail(function(data) {
+            //返らなかったときの処理
+            console.log("error");
+        });
+    });
+
 });

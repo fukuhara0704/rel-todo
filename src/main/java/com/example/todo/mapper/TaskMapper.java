@@ -17,13 +17,6 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface TaskMapper {
 
-
-
-
-
-
-
-
     /////////////////////////////////////////////
     //                   取得系                          //
     /////////////////////////////////////////////
@@ -66,6 +59,9 @@ public interface TaskMapper {
     @Update("update public.t_task set  task_status=2 where user_id = #{userId} and task_id = #{taskId}" )
     public boolean doneTask(@Param("userId") String userId, @Param("taskId") Integer taskId);
 
+
+    @Update("update public.t_task set  task_priority = #{taskPriority} where user_id = #{userId} and task_id = #{taskId}" )
+    public boolean updateImportant(@Param("userId") String userId,@Param("taskId")  Integer taskId, @Param("taskPriority") Integer taskPriority);
     /////////////////////////////////////////////
     //                   削除系                          //
     /////////////////////////////////////////////
@@ -77,4 +73,5 @@ public interface TaskMapper {
     /////////////////////////////////////////////
     @Insert("Insert INTO public.t_task (user_id, task_name) VALUES (#{userId}, #{taskName});")
     public boolean createTask(@Param("userId") String userId,@Param("taskName") String taskName);
+
 }
