@@ -94,7 +94,7 @@ public class TaskController {
      * @return
      */
     @RequestMapping(value = "/task/delete", method = RequestMethod.POST)
-    public String deleteTask(@RequestParam("hd-del-task-id") String param, @RequestParam("hd-del-type") String type) {
+    public String deleteTask(@RequestParam("hd-del-task-id") String param, @RequestParam("hd-type") String type) {
         // SESSIONからUserIDを取得
         String userId = userSession.getUserId();
 
@@ -116,7 +116,28 @@ public class TaskController {
      * @return
      */
     @RequestMapping(value = "/task/create", method = RequestMethod.POST)
-    public String createTask(@RequestParam("add-task-data") String param, @RequestParam("hd-create-type") String type) {
+    public String createTask(@RequestParam("add-task-data") String param, @RequestParam("hd-type") String type) {
+        // SESSIONからUserIDを取得
+        String userId = userSession.getUserId();
+
+        String taskName = param;
+        System.out.println(taskName);
+
+        if (taskService.createTask(userId, taskName)) {
+            return "redirect:/task?type=" + type;
+        } else {
+            // todayにリダイレクト
+            return "redirect:/error";
+        }
+    }
+    /**
+     * タスク完了処理
+     * 
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/task/done", method = RequestMethod.POST)
+    public String doneTask(@RequestParam("done-task") String param, @RequestParam("hd-type") String type) {
         // SESSIONからUserIDを取得
         String userId = userSession.getUserId();
 

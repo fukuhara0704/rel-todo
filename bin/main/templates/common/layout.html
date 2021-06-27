@@ -71,10 +71,13 @@
                 <table class="task-tbl">
                     <tr th:each="data : ${taskDataList}" th:object="${data}">
                         <td class="task-td">
-                            <div class="finish">
-                                <input class="finish-check" type="checkbox" name="finish-check">
-                                <span class="dummy-finish-check"></span>
-                            </div>
+                            <form action="/task/done" method="POST">
+                                <div layout:fragment="taskType"></div>
+                                <div class="finish" th:id="*{task_id}">
+                                    <input class="finish-check" type="checkbox" name="finish-check">
+                                    <span class="dummy-finish-check"></span>
+                                </div>
+                            </form>
                             <div class="task" th:id="*{task_id}">
                                 <div class="task-name" th:id="task_ + *{task_id}" th:text="*{task_name}"></div>
 
@@ -93,7 +96,7 @@
                         <span class="en-icon"></span>
                     </div>
                     <input type="text" name="add-task-data" class="add-task" id="add-task" placeholder=" + タスクの追加" maxlength="257">
-                    <div layout:fragment="taskTypeCreate"></div>
+                    <div layout:fragment="taskType"></div>
                     <div class="calendar">
                     </div>
                     <div class="repeat">
@@ -137,7 +140,7 @@
                 <form id="delForm" action="/task/delete" method="POST">
                     <div class="trash"> </div>
                     <input type="hidden" id="hiddenDelTaskId" name="hd-del-task-id">
-                    <div layout:fragment="taskTypeDel"></div>
+                    <div layout:fragment="taskType"></div>
                 </form>
             </div>
         </div>
