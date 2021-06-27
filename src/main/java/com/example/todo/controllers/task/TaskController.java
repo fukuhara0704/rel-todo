@@ -72,9 +72,8 @@ public class TaskController {
             taskDataList = taskService.findbyIdAllUnfinishTask(userId, taskStatus);
             targetHtml = "done";
         } else if (type.equals("important")) {
-            // すべての完了済みのタスク情報を取得する。
-            Integer taskStatus = 1;
-            taskDataList = taskService.findbyIdAllUnfinishTask(userId, taskStatus);
+            // 未実施、本日のタスクの重要なタスク情報を取得する。
+            taskDataList = taskService.findbyIdImportantTask(userId);
             targetHtml = "important";
         } else {
             // すべてのタスク情報を取得する。

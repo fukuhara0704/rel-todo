@@ -72,4 +72,9 @@ public class TaskService {
         }
         return true;
     }
+
+    public List<TaskModel> findbyIdImportantTask(String userId) {
+        List<TaskModel> taskList = taskMapper.findbyIdImportantTask(userId);
+        return taskList;
+    }
 }
