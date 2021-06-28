@@ -43,7 +43,7 @@ public interface TaskMapper {
     @Select("Select * from public.t_task where user_id = #{userId} ORDER BY id DESC")
     public List<TaskModel> findbyAllTask(@Param("userId") String userId);
 
-    @Select("Select * from public.t_task where user_id = #{userId} and task_priority = 1 and (task_status = 0 or task_status = 1 or task_today_flag = 1) ORDER BY id DESC")
+    @Select("Select * from public.t_task where user_id = #{userId} and task_priority = 1 and (task_status = 0 or task_status = 1)  ORDER BY id DESC")
     public List<TaskModel> findbyIdImportantTask(@Param("userId") String userId);
     /////////////////////////////////////////////
     //                   更新系                          //
