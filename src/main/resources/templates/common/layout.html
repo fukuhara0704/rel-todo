@@ -86,7 +86,9 @@
                             <div class="important">
                                 <input type="hidden" id="hiddenPriorityTaskId" name="hiddenPriorityTaskId" th:value="*{task_id}">
                                 <input type="hidden" id="hiddenTaskPriority" name="hiddenTaskPriority" th:value="*{task_priority}">
-                                <span class="important-mark">★</span>
+                                <!-- priorityが3の場合ここに記述した処理が評価される -->
+                                <span th:if="*{task_priority} == 0" class="important-mark">★</span>
+                                <span th:if="*{task_priority} == 1" class="important-mark isActive">★</span>
                             </div>
                         </td>
                     </tr>
