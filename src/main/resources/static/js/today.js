@@ -24,7 +24,19 @@ $(function() {
     $("#add-task").keydown(function(event) {
         if (event.key === "Enter") {
             console.log("Enterキーが押されました");
-            $('#createForm').submit();
+
+            var addTask = $('#add-task').val();
+            console.log(addTask)
+            if (addTask != "") {
+                $('#createForm').submit();
+            } else {
+                console.log("textボックスが空");
+                // 警告を出す
+                alert('空欄です！');
+
+                // 処理を中断
+                return false;
+            }
         }
     });
 
