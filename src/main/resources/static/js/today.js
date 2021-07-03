@@ -15,9 +15,12 @@ $(function() {
 
     $('.finish').click(function() {
         console.log('finishクリックされました！');
-        $(this).children('input[name="finish-check"]').prop('checked', true);
+        console.log(this)
+        var finishTaskId = this.getAttribute("id")
+        console.log(finishTaskId)
+        $(this).children('input[name="finish-check_"]').prop('checked', true);
 
-        $("#doneForm").submit();
+        $("#doneForm_" + finishTaskId).submit();
     })
 
 
