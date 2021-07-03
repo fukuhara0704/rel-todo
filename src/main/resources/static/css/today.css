@@ -21,7 +21,7 @@
                 display: flex;
                 justify-content: center;
                 overflow-y: scroll;
-                height: 780px;
+                /* height: 780px; */
             }
             
             .task-content::-webkit-scrollbar {
@@ -39,6 +39,7 @@
                 font-size: 40px;
                 font-weight: lighter;
                 margin-top: 15px;
+                font-family: Georgia, 'Times New Roman', Times, serif
             }
             
             .task-menubar {
