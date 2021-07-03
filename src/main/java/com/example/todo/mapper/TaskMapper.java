@@ -36,7 +36,7 @@ public interface TaskMapper {
     @Select("SELECT * FROM public.t_task where user_id = #{user_id} and task_status = #{taskStatus} ORDER BY id")
     public List<TaskModel> findbyIdAllDoneTask(@Param("user_id") String userId, @Param("taskStatus") Integer taskStatus);
     
-    @Select("Select task_id, task_name, task_memo, task_end_datetime, task_today_flag, to_char(task_created_time, 'yyyy/mm/dd hh24:mm') task_created_time from public.t_task where user_id = #{user_id} and task_id = #{taskId}")
+    @Select("Select task_id, task_name, task_memo, task_end_datetime, task_today_flag, to_char(task_created_time, 'yyyy/mm/dd hh24:mm') task_created_time from public.t_task where user_id = #{user_id} and task_id = #{taskId} ORDER BY id DESC")
     public List<TaskModel> findByTaskId(@Param("user_id") String userId, @Param("taskId") Integer taskId);
 
     // 対象のユーザーの全タスクの情報を取得する。

@@ -74,8 +74,16 @@
                             <form id="doneForm" action="/task/done" method="POST">
                                 <input type="hidden" id="hd-finish-task" name="hd-finish-task" th:value="*{task_id}">
                                 <div layout:fragment="taskType"></div>
-                                <div class="finish" th:id="*{task_id}">
+                                <div th:if="*{task_status} == 0" class="finish" th:id="*{task_id}">
                                     <input class="finish-check" type="checkbox" name="finish-check">
+                                    <span class="dummy-finish-check"></span>
+                                </div>
+                                <div th:if="*{task_status} == 1" class="finish" th:id="*{task_id}">
+                                    <input class="finish-check" type="checkbox" name="finish-check">
+                                    <span class="dummy-finish-check"></span>
+                                </div>
+                                <div th:if="*{task_status} == 2" class="finish" th:id="*{task_id}">
+                                    <input class="finish-check" type="checkbox" name="finish-check" checked>
                                     <span class="dummy-finish-check"></span>
                                 </div>
                             </form>
