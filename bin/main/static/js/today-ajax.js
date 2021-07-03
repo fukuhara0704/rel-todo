@@ -72,7 +72,7 @@ $(document).ready(function() {
         var beforeTaskData = $('#hiddenTaskData').val();
         var afterTaskData = $('textarea[name="side-task"]').val();
 
-        if (beforeTaskData != afterTaskData) {
+        if (beforeTaskData != afterTaskData && afterTaskData) {
             console.log("値が変更された場合");
 
             var taskId = $('#hiddenTaskId').val();
