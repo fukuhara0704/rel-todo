@@ -34,7 +34,8 @@ body {
 .content {
     text-align: center;
     /* background-color: #eee; */
-    background-color: #F5C9C6;
+    /* background-color: #F5C9C6; */
+    background-color: #CCFFFF;
     flex: auto;
     position: relative;
 }
