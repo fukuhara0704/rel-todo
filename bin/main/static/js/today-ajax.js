@@ -177,9 +177,18 @@ $(document).ready(function() {
         console.log('importantクリックされました！');
         $(this).toggleClass('isActive');
         console.log(this)
+        var importantId = this.getAttribute("id");
+        console.log(importantId)
 
-        var taskId = $('#hiddenPriorityTaskId').val();
-        var taskPriority = $('#hiddenTaskPriority').val();
+        var id = importantId.split('_')[1]
+        console.log(id)
+
+
+        var taskId = $('#hiddenPriorityTaskId_' + id).val();
+
+        console.log(taskId)
+        var taskPriority = $('#hiddenTaskPriority_' + id).val();
+        console.log(taskPriority)
         var jsonString = {
             task_id: taskId,
             task_priority: taskPriority
@@ -196,9 +205,9 @@ $(document).ready(function() {
         }).done(function(data) {
             console.log(data);
             if (taskPriority == 0) {
-                $('#hiddenTaskPriority').val(1);
+                $('#hiddenTaskPriority_' + id).val(1);
             } else {
-                $('#hiddenTaskPriority').val(0);
+                $('#hiddenTaskPriority_' + id).val(0);
             }
         }).fail(function(data) {
             //返らなかったときの処理
